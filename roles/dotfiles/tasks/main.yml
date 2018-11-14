@@ -1,0 +1,10 @@
+---
+
+- name: "roles.dotfiles.tasks.main: Download dotfiles"
+  git:
+    repo: https://github.com/ShotaKitazawa/dotfiles
+    dest: {{ ansible_env.HOME }}/dotfiles
+    version: master
+
+- name: "roles.dotfiles.tasks.main: Deploy dotfiles"
+  shell: "cd {{ ansible_env.HOME }}/dotfiles && ./putprofile"
