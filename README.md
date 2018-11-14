@@ -2,11 +2,49 @@
 
 Setup development environment for Mac/Linux/WSL
 
-# Execute playbook
+# Execution
+
+## Before execution
+
+### Mac
+
+TODO
+
+### Linux
+
+* install & start sshd
+
+### WSL (c.f. Ubuntu)
+
+* install sshd
+
+```
+apt install openssh-server
+```
+
+* config sshd
+
+```
+sed -i -e 's|^\(PermitRootLogin\).*|\1 yes|g' /etc/ssh/sshd_config
+sed -i -e 's|^\(PasswordAuthentication\).*|\1 no|g' /etc/ssh/sshd_config
+sed -i -e 's|^\(UsePrivilegeSeparation\).*|\1 no|g' /etc/ssh/sshd_config
+```
+
+* start sshd
+
+```
+/usr/sbin/sshd
+```
+
+## Execute playbook
 
 ```
 $ ansible-playbook -i inventory site.yml [-k -c paramiko]
 ```
+
+## After Execution
+
+* finish sshd
 
 # Memo
 
