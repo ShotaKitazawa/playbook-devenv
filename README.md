@@ -90,4 +90,7 @@ $ ansible-playbook -i inventory site.yml [-k -c paramiko]
     * mac
         * cask: `brew install cask`
         * macvim: `brew cask install macvim`
+    * wsl
+        * /bin/open: `cmd.exe /c start $@
+`
 
