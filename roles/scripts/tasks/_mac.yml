@@ -1,0 +1,12 @@
+---
+
+- name: "scripts.tasks._mac: Deploy scripts"
+  copy:
+    src: "{{ item }}"
+    dest: "~/bin/"
+  with_items:
+    - mac/imgcat
+    - mac/replace_macvimrc
+    - mac/tmux-functions
+
+

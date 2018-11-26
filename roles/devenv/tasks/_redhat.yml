@@ -1,0 +1,12 @@
+---
+
+- name: "devenv.tasks._redhat: Include pyenv task"
+  include_tasks: _pyenv.yml
+
+- name: "devenv.tasks._redhat: Install Neovim from yum-epel"
+  yum:
+    name: neovim
+    state: latest
+
+- name: "devenv.tasks._redhat: Install Neovim from python-pip"
+  #TODO

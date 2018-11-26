@@ -1,0 +1,41 @@
+---
+
+- name: "base_packages.tasks._redhat: Upgrade all packages"
+  yum:
+    name: '*'
+    state: latest
+
+- name: "base_packages.tasks._redhat: Install packages"
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "@base"
+    - "@development"
+    - "@additional-devel"
+    - "telnet"
+    - "whois"
+    - "screen"
+    - "tmux"
+
+- name: "base_packages.tasks._redhat: Remove packages"
+  yum:
+    name: "{{ item }}"
+    state: removed
+  with_items:
+    - "perl-homedir"
+
+- name: "roles.base_packages.tasks._redhat: Install epel repository"
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "epel-release"
+
+- name: "roles.base_packages.tasks._redhat: Install epel packages"
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "jq"
+

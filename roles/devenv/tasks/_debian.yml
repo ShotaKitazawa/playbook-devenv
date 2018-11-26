@@ -1,0 +1,5 @@
+---
+
+- name: "devenv.tasks._redhat: Include pyenv task"
+  include_tasks: _pyenv.yml
+

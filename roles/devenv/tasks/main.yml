@@ -1,14 +1,14 @@
 ---
 
-- name: "base_packages.tasks.main: Include RedHat specific tasks"
+- name: "devenv.tasks.main: Include RedHat specific tasks"
   when: "ansible_os_family == 'RedHat'"
   include_tasks: _redhat.yml
 
-- name: "base_packages.tasks.main: Include RedHat specific tasks"
+- name: "devenv.tasks.main: Include RedHat specific tasks"
   when: "ansible_os_family == 'Debian'"
   include_tasks: _debian.yml
 
-- name: "base_packages.tasks.main: Include RedHat specific tasks"
+- name: "devenv.tasks.main: Include RedHat specific tasks"
   when: "ansible_os_family == 'Darwin'"
   include_tasks: _mac.yml
 
