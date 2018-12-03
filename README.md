@@ -8,12 +8,17 @@ Setup development environment for Mac/Linux/WSL
 
 ### Mac
 
-TODO
+* install & start sshd
+    * TODO
+* install ansible
+    * TODO
 
 ### Linux
 
 * install & start sshd
-* install python
+    * TODO
+* install ansible
+    * TODO
 
 ### WSL (c.f. Ubuntu)
 
@@ -37,19 +42,14 @@ sed -i -e 's|^\(UsePrivilegeSeparation\).*|\1 no|g' /etc/ssh/sshd_config
 /usr/sbin/sshd
 ```
 
-* install python
-
-```
-apt install python
-```
+* install ansible
 
 ## Execute playbook
 
-* config `inventory` file
+* download
 
 ```
-[target]
-$TARGET_ADDR
+$ git clone https://github.com/ShotaKitazawa/playbook-devenv.git
 ```
 
 * execute

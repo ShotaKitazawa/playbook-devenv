@@ -1,4 +1,0 @@
----
-
-- name: "set_facts.tasks.main: Re-gather facts"
-  action: setup
