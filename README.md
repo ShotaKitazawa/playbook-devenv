@@ -38,6 +38,15 @@ sed -i -e 's|^\(UsePrivilegeSeparation\).*|\1 no|g' /etc/ssh/sshd_config
 
 ## Execute playbook
 
+* config `inventory` file
+
+```
+[target]
+$TARGET_ADDR
+```
+
+* execute
+
 ```
 $ ansible-playbook -i inventory site.yml [-k -c paramiko]
 ```
