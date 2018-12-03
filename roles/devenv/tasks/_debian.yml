@@ -19,15 +19,11 @@
   apt_repository:
     repo: ppa:neovim-ppa/stable
 
-- name: "devenv.tasks._debian: Upgrade all packages"
-  apt:
-    name: '*'
-    state: latest
-
 - name: "devenv.tasks._debian: Install repository from neovim-ppa/stable"
   apt:
     name: "neovim"
     state: latest
+    update_cache: yes
 
 - name: "devenv.tasks._debian: Include Neovim task"
   include_tasks: _neovim.yml

@@ -13,6 +13,7 @@ TODO
 ### Linux
 
 * install & start sshd
+* install python
 
 ### WSL (c.f. Ubuntu)
 
@@ -34,6 +35,12 @@ sed -i -e 's|^\(UsePrivilegeSeparation\).*|\1 no|g' /etc/ssh/sshd_config
 
 ```
 /usr/sbin/sshd
+```
+
+* install python
+
+```
+apt install python
 ```
 
 ## Execute playbook

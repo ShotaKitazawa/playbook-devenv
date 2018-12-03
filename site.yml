@@ -2,10 +2,12 @@
 
 - hosts: all
 
+  pre_tasks:
+    - name: ".: Re-gather facts"
+      action: setup
+
   roles:
     - base_packages
-    - pyenv
-    - set_fact
     - scripts
     - devenv
     - dotfiles
