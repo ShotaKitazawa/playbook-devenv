@@ -1,20 +1,14 @@
 ---
 
-- name: "roles.base_packages.tasks._debian: Upgrade all packages"
+- name: "base_packages.tasks._debian: Upgrade all packages"
   apt:
     name: '*'
     state: latest
 
-- name: "roles.base_packages.tasks._debian: Install packages"
+- name: "base_packages.tasks._debian: Install packages"
   apt:
     name: "{{ item }}"
     state: latest
   with_items:
     - build-essential
     - git
-    - zlib1g-dev
-    - libssl-dev
-    - libbz2-dev
-    - libffi-dev
-    - libreadline-dev
-    - libsqlite3-dev

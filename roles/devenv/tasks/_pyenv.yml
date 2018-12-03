@@ -3,25 +3,43 @@
 - name: "devenv.tasks._pyenv: Download pyenv"
   git:
     repo: "https://github.com/pyenv/pyenv.git"
-    dest: "~/.pyenv"
+    dest: "{{ ansible_env.HOME }}/.pyenv"
     version: master
 
 - name: "devenv.tasks._pyenv: Download pyenv-virtualenv"
   git:
     repo: "https://github.com/pyenv/pyenv-virtualenv.git"
-    dest: "~/.pyenv/plugins/pyenv-virtualenv"
+    dest: "{{ ansible_env.HOME }}/.pyenv/plugins/pyenv-virtualenv"
     version: master
 
 - name: "devenv.tasks._pyenv: Deploy profile"
   copy:
     src: "bash_pyenv"
-    dest: "~/.bash_pyenv"
+    dest: "{{ ansible_env.HOME }}/.bash_pyenv"
 
-- name: "devenv.tasks.main: Check bash_profile"
+- name: "devenv.tasks._pyenv: Check bash_profile"
   ignore_errors: True
   shell: "egrep '^if [ -e ~/.bash_pyenv ]; then . ~/.bash_pyenv; fi$' ~/.bash_profile"
   register: no_such_row
 
-- name: "roles.docker.tasks.main: Postscript bash_profile"
+- name: "devenv.tasks._pyenv: Postscript bash_profile"
   shell: "echo 'if [ -e ~/.bash_pyenv ]; then . ~/.bash_pyenv; fi' >> ~/.bash_profile"
   when: no_such_row.rc == 1
+
+- name: "devenv.tasks._pyenv: Check python"
+  shell: bash -lc "pyenv versions | grep {{ python_version }}"
+  register: pyenv_version
+  ignore_errors: yes
+  changed_when: False
+
+- name: "devenv.tasks._pyenv: Install python"
+  shell: bash -lc "pyenv install {{ python_version }}"
+  when: pyenv_version|failed
+
+- name: "devenv.tasks._pyenv: Set python"
+  shell: bash -lc "pyenv global {{ python_version }}"
+  when: pyenv_version|failed
+
+- name: "devenv.tasks._pyenv: Set_fact ansible_python_interpreter"
+  set_fact: "ansible_python_interpreter={{ ansible_env.HOME }}/.pyenv/shims/python"
+

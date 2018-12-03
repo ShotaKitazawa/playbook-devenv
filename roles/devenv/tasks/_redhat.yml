@@ -1,5 +1,18 @@
 ---
 
+- name: "devenv.tasks._redhat: Install packages depend on pyenv"
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - gcc
+    - bzip2
+    - bzip2-devel
+    - openssl
+    - openssl-devel
+    - readline
+    - readline-devel
+
 - name: "devenv.tasks._redhat: Include pyenv task"
   include_tasks: _pyenv.yml
 
@@ -8,5 +21,5 @@
     name: neovim
     state: latest
 
-- name: "devenv.tasks._redhat: Install Neovim from python-pip"
-  #TODO
+- name: "devenv.tasks._redhat: Include Neovim task"
+  include_tasks: _neovim.yml

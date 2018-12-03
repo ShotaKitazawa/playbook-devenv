@@ -1,0 +1,5 @@
+---
+
+- name: "devenv.tasks._neovim: Install pip package"
+  pip:
+    name: "neovim"
