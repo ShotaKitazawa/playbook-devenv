@@ -17,27 +17,27 @@
     src: "bash_pyenv"
     dest: "{{ ansible_env.HOME }}/.bash_pyenv"
 
-- name: "devenv.tasks._pyenv: Check bash_profile"
+- name: "devenv.tasks._pyenv: Check bashrc"
   ignore_errors: True
-  shell: "egrep '^if [ -e ~/.bash_pyenv ]; then . ~/.bash_pyenv; fi$' ~/.bash_profile"
+  shell: "egrep '^if [ -e ~/.bash_pyenv ]; then . ~/.bash_pyenv; fi$' ~/.bashrc"
   register: no_such_row
 
-- name: "devenv.tasks._pyenv: Postscript bash_profile"
-  shell: "echo 'if [ -e ~/.bash_pyenv ]; then . ~/.bash_pyenv; fi' >> ~/.bash_profile"
+- name: "devenv.tasks._pyenv: Postscript bashrc"
+  shell: "echo 'if [ -e ~/.bash_pyenv ]; then . ~/.bash_pyenv; fi' >> ~/.bashrc"
   when: no_such_row.rc == 1
 
 - name: "devenv.tasks._pyenv: Check python"
-  shell: bash -lc "pyenv versions | grep {{ python_version }}"
+  shell: ". ~/.bash_pyenv; pyenv versions | grep {{ python_version }}"
   register: pyenv_version
   ignore_errors: yes
   changed_when: False
 
 - name: "devenv.tasks._pyenv: Install python"
-  shell: bash -lc "pyenv install {{ python_version }}"
+  shell: ". ~/.bash_pyenv; pyenv install {{ python_version }}"
   when: pyenv_version|failed
 
 - name: "devenv.tasks._pyenv: Set python"
-  shell: bash -lc "pyenv global {{ python_version }}"
+  shell: ". ~/.bash_pyenv; pyenv global {{ python_version }}"
   when: pyenv_version|failed
 
 - name: "devenv.tasks._pyenv: Set_fact ansible_python_interpreter"

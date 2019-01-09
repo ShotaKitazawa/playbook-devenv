@@ -1,14 +1,11 @@
 ---
 
-- name: "base_packages.tasks._debian: Upgrade all packages"
-  apt:
-    name: '*'
-    state: latest
-
 - name: "base_packages.tasks._debian: Install packages"
   apt:
     name: "{{ item }}"
     state: latest
+    update_cache: yes
   with_items:
     - build-essential
+    - software-properties-common
     - git
