@@ -94,12 +94,12 @@ $ ansible-playbook -i inventory site.yml [-k -c paramiko]
         * wsl: download from https://github.com/equalsraf/win32yank/releases & deploy to $PATH
         * redhat: `yum install xsel`
         * debian: `apt install xsel`
-
 * Other
     * mac
         * cask: `brew install cask`
         * macvim: `brew cask install macvim`
+        * pdf viewer: `brew cask install Skim`
     * wsl
-        * /bin/open: `cmd.exe /c start $@
-`
-
+        * /bin/open: `cmd.exe /c start $@`
+    * Windows (manually install)
+        * pdf viewer: https://www.sumatrapdfreader.org/download-free-pdf-viewer.html
